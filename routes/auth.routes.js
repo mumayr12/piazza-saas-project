@@ -4,7 +4,11 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const router = express.Router();
 
-// Register User
+/**
+ * @route   POST /register
+ * @desc    Register a new user
+ * @access  Public
+ */
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -36,7 +40,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login User
+/**
+ * @route   POST /login
+ * @desc    Login user and return JWT
+ * @access  Public
+ */
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {

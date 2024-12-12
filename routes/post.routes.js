@@ -3,8 +3,11 @@ const Post = require("../models/post.model");
 const authenticateToken = require("../middleware/auth");
 const router = express.Router();
 
-// Create a new post
-router.post("/", authenticateToken, async (req, res) => {
+/**
+ * @route   POST /posts
+ * @desc    Create a new post
+ * @access  Private (Requires authentication)
+ */ router.post("/", authenticateToken, async (req, res) => {
   console.log("Authenticated User:", req.user); // Logs the authenticated user
   console.log("Request Body:", req.body); //
   const { title, topic, body, expirationTime } = req.body;
@@ -26,6 +29,11 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /posts/:topic
+ * @desc    Get all posts by topic
+ * @access  Public
+ */
 router.get("/:topic", async (req, res) => {
   try {
     const posts = await Post.find({ topic: req.params.topic });
@@ -35,7 +43,11 @@ router.get("/:topic", async (req, res) => {
   }
 });
 
-// Like or Dislike or Comment
+/**
+ * @route   PUT /posts/:id/action
+ * @desc    Perform actions (like, dislike, comment) on a post
+ * @access  Private (Requires authentication)
+ */
 router.put("/:id/action", authenticateToken, async (req, res) => {
   const { action, comment } = req.body;
 
@@ -71,6 +83,11 @@ router.put("/:id/action", authenticateToken, async (req, res) => {
   res.json(post);
 });
 
+/**
+ * @route   GET /posts/:topic/active-highest-interest
+ * @desc    Get the active post with the highest interest by topic
+ * @access  Public
+ */
 router.get("/:topic/active-highest-interest", async (req, res) => {
   try {
     // Find active posts by topic (those not expired)
