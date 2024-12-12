@@ -14,6 +14,10 @@ connectDB();
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.get("/api", (req, res) => {
+  res.json({ msg: "API is running..." });
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
