@@ -17,16 +17,15 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send(`
     <h1>Welcome to the Piazza SaaS Application API</h1>
-    <p>This is the backend for the Piazza SaaS platform, providing powerful features for collaborative learning and community discussions.</p>
+    <p>This is the API for the Piazza SaaS platform, providing powerful features for creating post and commenting on them.</p>
     <p>Key Features:</p>
     <ul>
-      <li>User management: Students, Instructors, and Admins</li>
-      <li>Interactive posts and discussions</li>
+      <li>User management: Users</li>
+      <li>Interactive posts and comments</li>
       <li>Secure authentication and role-based access control</li>
-      <li>Real-time notifications and updates</li>
     </ul>
     <p>To explore the API, visit: <a href="/api">/api</a></p>
-    <p>For further documentation or support, contact the Piazza development team.</p>
+    <p>For further documentation or support, contact the Piazza developer.</p>
   `);
 });
 
